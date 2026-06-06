@@ -22,63 +22,40 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen font-display">
-      {/* SINGLE BACKGROUND - fixed, covers entire page, consistent stripes */}
-      <div className="fixed inset-0 z-0">
-        {/* Base: dominant cyan */}
-        <div className="absolute inset-0" style={{ background: "#00A8CC" }} />
-
-        {/* Green diagonal stripe */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(155deg, transparent 35%, #2FA844 35%, #2FA844 52%, transparent 52%)",
-          }}
-        />
-
-        {/* Lime diagonal stripe */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(155deg, transparent 48%, #B5D63D 48%, #B5D63D 68%, transparent 68%)",
-          }}
-        />
-
-        {/* Pulsing bright glow ON TOP of everything */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 25% 35%, rgba(0, 220, 255, 0.35) 0%, transparent 70%)",
-          }}
-          animate={{ opacity: [0, 0.6, 0], x: ["-5%", "5%", "-5%"] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 75% 65%, rgba(100, 255, 180, 0.25) 0%, transparent 70%)",
-          }}
-          animate={{ opacity: [0, 0.5, 0], x: ["3%", "-3%", "3%"] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        />
-
-        {/* Shimmer line that drifts across */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(155deg, transparent 30%, rgba(255,255,255,0.18) 32%, transparent 34%)",
-          }}
-          animate={{
-            backgroundPosition: ["0% 0%", "200% 200%"],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
+      {/* ANIMATED BACKGROUND - three shifting translucent gradient layers (like original) */}
+      <motion.div
+        className="fixed inset-0 z-0"
+        style={{
+          left: "-50%",
+          right: "-50%",
+          backgroundImage: "linear-gradient(-60deg, #6c3 50%, #09f 50%)",
+          opacity: 0.5,
+        }}
+        animate={{ x: ["-25%", "25%", "-25%"] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="fixed inset-0 z-0"
+        style={{
+          left: "-50%",
+          right: "-50%",
+          backgroundImage: "linear-gradient(-60deg, #6c3 50%, #09f 50%)",
+          opacity: 0.5,
+        }}
+        animate={{ x: ["25%", "-25%", "25%"] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="fixed inset-0 z-0"
+        style={{
+          left: "-50%",
+          right: "-50%",
+          backgroundImage: "linear-gradient(-60deg, #6c3 50%, #09f 50%)",
+          opacity: 0.5,
+        }}
+        animate={{ x: ["-25%", "25%", "-25%"] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Language toggle */}
       <motion.div
