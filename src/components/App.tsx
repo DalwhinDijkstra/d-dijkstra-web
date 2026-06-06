@@ -27,14 +27,6 @@ export default function App() {
         {/* Base: dominant cyan */}
         <div className="absolute inset-0" style={{ background: "#00A8CC" }} />
 
-        {/* Pulsing cyan overlay for life */}
-        <motion.div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at 30% 40%, rgba(0, 200, 240, 0.4) 0%, transparent 60%)" }}
-          animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.05, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-
         {/* Green diagonal stripe */}
         <div
           className="absolute inset-0"
@@ -53,23 +45,38 @@ export default function App() {
           }}
         />
 
-        {/* Pulsing light on stripe edges */}
+        {/* Pulsing bright glow ON TOP of everything */}
         <motion.div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(155deg, transparent 34%, rgba(255,255,255,0.12) 35.5%, transparent 37%, transparent 47%, rgba(255,255,255,0.1) 48.5%, transparent 50%)",
+              "radial-gradient(ellipse 80% 60% at 25% 35%, rgba(0, 220, 255, 0.35) 0%, transparent 70%)",
           }}
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          animate={{ opacity: [0, 0.6, 0], x: ["-5%", "5%", "-5%"] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Subtle cyan glow pulse bottom-left */}
         <motion.div
           className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at 70% 80%, rgba(0, 180, 216, 0.3) 0%, transparent 50%)" }}
-          animate={{ opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 75% 65%, rgba(100, 255, 180, 0.25) 0%, transparent 70%)",
+          }}
+          animate={{ opacity: [0, 0.5, 0], x: ["3%", "-3%", "3%"] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        />
+
+        {/* Shimmer line that drifts across */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(155deg, transparent 30%, rgba(255,255,255,0.18) 32%, transparent 34%)",
+          }}
+          animate={{
+            backgroundPosition: ["0% 0%", "200% 200%"],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
