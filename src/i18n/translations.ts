@@ -1,7 +1,7 @@
 export const translations = {
   de: {
     hero: {
-      role: "projektmanager",
+      role: "project management mice",
       cta: "linkedin-profil ansehen",
     },
     contact: {
@@ -22,7 +22,7 @@ export const translations = {
   },
   en: {
     hero: {
-      role: "project manager",
+      role: "project management mice",
       cta: "view linkedin profile",
     },
     contact: {
