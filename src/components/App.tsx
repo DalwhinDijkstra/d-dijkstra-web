@@ -6,7 +6,6 @@ import BlurFade from "./BlurFade";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/dalwhin-dijkstra/";
 
-/** Liquid glass on colored background */
 const liquidGlass = {
   background: "rgba(255, 255, 255, 0.12)",
   backdropFilter: "blur(24px) saturate(180%)",
@@ -22,55 +21,79 @@ export default function App() {
   const toggleLang = () => setLang((prev) => (prev === "de" ? "en" : "de"));
 
   return (
-    <div className="min-h-screen font-display">
-      {/* HERO */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Diagonal gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0" style={{ background: "#00B4D8" }} />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 30%, #38B249 30%, #38B249 55%, transparent 55%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 50%, #B5D63D 50%, #B5D63D 80%, transparent 80%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 40%, rgba(255,255,255,0.08) 45%, transparent 50%)",
-            }}
-          />
-        </div>
+    <div className="relative min-h-screen font-display">
+      {/* SINGLE BACKGROUND - fixed, covers entire page, consistent stripes */}
+      <div className="fixed inset-0 z-0">
+        {/* Base: dominant cyan */}
+        <div className="absolute inset-0" style={{ background: "#00A8CC" }} />
 
-        {/* Language toggle */}
+        {/* Pulsing cyan overlay for life */}
         <motion.div
-          className="fixed top-6 right-6 z-50"
-          initial={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          <button
-            onClick={toggleLang}
-            className="cursor-pointer rounded-full px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white/90 transition-all hover:text-white hover:scale-105"
-            style={liquidGlass}
-          >
-            <span className={lang === "de" ? "text-white" : "text-white/50"}>de</span>
-            <span className="mx-1 text-white/30">/</span>
-            <span className={lang === "en" ? "text-white" : "text-white/50"}>en</span>
-          </button>
-        </motion.div>
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(ellipse at 30% 40%, rgba(0, 200, 240, 0.4) 0%, transparent 60%)" }}
+          animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.05, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        {/* Name */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6">
+        {/* Green diagonal stripe */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(155deg, transparent 35%, #2FA844 35%, #2FA844 52%, transparent 52%)",
+          }}
+        />
+
+        {/* Lime diagonal stripe */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(155deg, transparent 48%, #B5D63D 48%, #B5D63D 68%, transparent 68%)",
+          }}
+        />
+
+        {/* Pulsing light on stripe edges */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(155deg, transparent 34%, rgba(255,255,255,0.12) 35.5%, transparent 37%, transparent 47%, rgba(255,255,255,0.1) 48.5%, transparent 50%)",
+          }}
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+
+        {/* Subtle cyan glow pulse bottom-left */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(ellipse at 70% 80%, rgba(0, 180, 216, 0.3) 0%, transparent 50%)" }}
+          animate={{ opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+        />
+      </div>
+
+      {/* Language toggle */}
+      <motion.div
+        className="fixed top-6 right-6 z-50"
+        initial={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+      >
+        <button
+          onClick={toggleLang}
+          className="cursor-pointer rounded-full px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white/90 transition-all hover:text-white hover:scale-105"
+          style={liquidGlass}
+        >
+          <span className={lang === "de" ? "text-white" : "text-white/50"}>de</span>
+          <span className="mx-1 text-white/30">/</span>
+          <span className={lang === "en" ? "text-white" : "text-white/50"}>en</span>
+        </button>
+      </motion.div>
+
+      {/* HERO */}
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center">
+        <div className="flex flex-col items-center text-center px-6">
           <BlurFade delay={0.2} duration={0.8} yOffset={20} blur="12px">
             <h1
               className="text-4xl font-bold text-white sm:text-6xl md:text-7xl lg:text-8xl"
@@ -82,7 +105,7 @@ export default function App() {
         </div>
 
         {/* LinkedIn icon */}
-        <BlurFade delay={0.8} duration={0.6} yOffset={15} className="absolute bottom-20 z-10">
+        <BlurFade delay={0.8} duration={0.6} yOffset={15} className="absolute bottom-20">
           <a
             href={LINKEDIN_URL}
             target="_blank"
@@ -112,35 +135,9 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* CONTACT - gradient continues, content in liquid glass */}
-      <section id="contact" className="relative px-6 py-24 md:px-12 lg:px-24 overflow-hidden">
-        {/* Continuing diagonal gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0" style={{ background: "#38B249" }} />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, #00B4D8 0%, transparent 35%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 40%, #B5D63D 65%, #B5D63D 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 30%, rgba(255,255,255,0.06) 35%, transparent 40%)",
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-3xl">
+      {/* CONTACT */}
+      <section id="contact" className="relative z-10 px-6 py-24 md:px-12 lg:px-24">
+        <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1} inView>
             <h2 className="mb-12 text-sm tracking-[0.2em] text-white/60">
               <AnimatePresence mode="wait">
@@ -157,7 +154,6 @@ export default function App() {
             </h2>
           </BlurFade>
 
-          {/* Contact card - liquid glass */}
           <BlurFade delay={0.2} inView>
             <div className="rounded-3xl p-8 sm:p-10" style={liquidGlass}>
               <AnimatePresence mode="wait">
@@ -177,7 +173,7 @@ export default function App() {
             </div>
           </BlurFade>
 
-          {/* LinkedIn CTA - liquid glass */}
+          {/* LinkedIn CTA */}
           <BlurFade delay={0.35} inView>
             <div className="mt-8 flex justify-center">
               <a
@@ -216,28 +212,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* IMPRINT - gradient continues */}
-      <section id="imprint" className="relative px-6 py-24 md:px-12 lg:px-24 overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0" style={{ background: "#B5D63D" }} />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, #38B249 0%, transparent 40%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(155deg, transparent 20%, rgba(255,255,255,0.06) 25%, transparent 30%)",
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-3xl">
+      {/* IMPRINT */}
+      <section id="imprint" className="relative z-10 px-6 py-24 md:px-12 lg:px-24">
+        <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1} inView>
             <h2 className="mb-12 text-sm tracking-[0.2em] text-white/60">
               <AnimatePresence mode="wait">
@@ -288,21 +265,14 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer
-        className="relative px-6 py-6 overflow-hidden"
-      >
-        <div className="absolute inset-0" style={{ background: "#B5D63D" }} />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(155deg, #38B249 0%, transparent 60%)" }}
-        />
-        <div className="relative z-10 mx-auto flex max-w-3xl items-center justify-center gap-3 text-xs tracking-[0.1em] text-white/60">
+      <footer className="relative z-10 px-6 py-6">
+        <div className="mx-auto flex max-w-3xl items-center justify-center gap-3 text-xs tracking-[0.1em] text-white/50">
           <span>dalwhin dijkstra</span>
-          <span className="text-white/30">//</span>
+          <span className="text-white/25">//</span>
           <a href="mailto:post@d-dijkstra.de" className="transition-colors hover:text-white">
             post@d-dijkstra.de
           </a>
-          <span className="text-white/30">//</span>
+          <span className="text-white/25">//</span>
           <a href="#imprint" className="transition-colors hover:text-white">
             <AnimatePresence mode="wait">
               <motion.span
